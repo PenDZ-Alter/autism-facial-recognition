@@ -5,4 +5,4 @@ def load_global_vars():
         global_vars = json.load(f)
     return global_vars
 
-vars = load_global_vars()
+glob_vars = load_global_vars()

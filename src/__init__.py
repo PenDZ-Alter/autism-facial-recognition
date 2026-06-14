@@ -1,3 +1,3 @@
-from .global_vars import vars
+from .global_vars import glob_vars
 
-__ALL__ = ['vars']
+__ALL__ = ['glob_vars']

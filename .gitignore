@@ -2,3 +2,4 @@
 *.keras
 *.png
 src/__pycache__/
+test_vars.py

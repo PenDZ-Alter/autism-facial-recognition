@@ -2,7 +2,7 @@
     "root_dir": "/media/DATA/.kaggle/autism-spectrum",
     "epochs": 50,
     "batch_size": 32,
-    "num_classes": 2,
     "input_size": 224,
-    "rotation_range": 20
+    "rotation_range": 20,
+    "early_stopping_patience": 15
 }
