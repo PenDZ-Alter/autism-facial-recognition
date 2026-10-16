@@ -1,0 +1,4 @@
+{
+  "resnet_mobilenet_fusion_v1.keras": { "preprocess": "rescale", "resize": "bilinear", "threshold": 0.5 },
+  "fusion_v2_tf_preprocess.keras":    { "preprocess": "tf",      "resize": "nearest",  "threshold": 0.5 }
+}

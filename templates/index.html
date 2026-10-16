@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASD Model Tester</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="page-head">
+    <h1>ASD Model Tester</h1>
+    <p>Test one or many Keras fusion models (ResNet50V2 + MobileNetV2) on one or many face images. Inference runs on this computer only.</p>
+  </header>
+
+  <main class="layout">
+    <div class="controls">
+      <section class="card" aria-labelledby="h-images">
+        <h2 id="h-images">Images</h2>
+        <div class="drop" id="drop" tabindex="0" role="button" aria-label="Add images">
+          <div class="hint">
+            <strong>Drop images here or click to browse</strong>
+            <span id="fmtHint">JPG or JPEG, up to 10 MB each</span>
+          </div>
+        </div>
+        <input type="file" id="file" accept=".jpg,.jpeg,image/jpeg" multiple hidden>
+        <ul class="thumbs" id="thumbs"></ul>
+
+        <label class="toggle">
+          <input type="checkbox" id="allowPng">
+          <span class="switch"></span>
+          Also allow PNG (optional)
+        </label>
+      </section>
+
+      <section class="card" aria-labelledby="h-models">
+        <div class="card-head">
+          <h2 id="h-models">Models</h2>
+          <div class="mini-actions">
+            <button type="button" class="link" id="selAll">All</button>
+            <button type="button" class="link" id="selNone">None</button>
+            <button type="button" class="link" id="refresh">Refresh</button>
+          </div>
+        </div>
+        <ul class="models" id="models"><li class="muted">Loading models…</li></ul>
+
+        <div class="row">
+          <button type="button" class="ghost" id="uploadModel">Add model file</button>
+          <input type="file" id="modelFile" accept=".keras" hidden>
+        </div>
+        <div class="msg" id="modelMsg" role="status"></div>
+
+        <label class="field" for="prep">Preprocessing
+          <select id="prep">
+            <option value="default">Per-model default</option>
+            <option value="rescale">Rescale, 0 to 1</option>
+            <option value="tf">Range -1 to 1 (preprocess_input)</option>
+            <option value="none">None, 0 to 255</option>
+          </select>
+        </label>
+      </section>
+
+      <div class="row">
+        <button type="button" class="primary" id="run" disabled>Run prediction</button>
+        <button type="button" class="ghost" id="clear">Clear</button>
+      </div>
+      <div class="msg error" id="error" role="alert"></div>
+    </div>
+
+    <section class="card results" aria-labelledby="h-res" aria-live="polite">
+      <div class="card-head">
+        <h2 id="h-res">Results</h2>
+        <button type="button" class="link" id="csv" hidden>Download CSV</button>
+      </div>
+      <div class="empty" id="empty">No predictions yet. Add images, pick models, then run the test.</div>
+      <div id="out"></div>
+      <p class="note">For research and model testing only. This is not a diagnostic tool and cannot replace assessment by a qualified clinician.</p>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
